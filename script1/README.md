@@ -12,7 +12,7 @@ Bu sprintte sadece HTML ile çalışılmıştır. CSS ve JavaScript kullanılmam
 - Etkinlik ekleme ve güncelleme formları
 
 ## Canlı Adres
-
+npx plugins add vercel/vercel-plugin
 ## Sayfalar
 
 | Dosya | İçerik |
