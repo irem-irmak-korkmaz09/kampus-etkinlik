@@ -4,7 +4,7 @@ Kampüsteki seminer, atölye ve sosyal etkinlikleri tek bir yerden takip etmeyi,
 
 ## Canlı Adres
 
-https://kampus-etkinlik-script2.vercel.app/
+https://kampus-etkinlik-sprint3-git-main-irem20.vercel.app/
 
 ## Sayfalar
 
