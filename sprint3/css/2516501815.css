@@ -279,20 +279,22 @@ form:not(.filtre) {
   box-shadow: var(--golge);
   padding: var(--bosluk-l);
   margin-top: var(--bosluk-m);
-  max-width: 500px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
 }
 
-label {
-  display: block;
-  margin-top: var(--bosluk-m);
-  font-weight: bold;
-  color: #333;
+.form-grup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--bosluk-m);
 }
 
-label:first-of-type {
-  margin-top: 0;
+.form-grup label,
+label {
+  display: block;
+  font-weight: bold;
+  color: #333;
 }
 
 input, select, textarea {
@@ -303,6 +305,7 @@ input, select, textarea {
   border-radius: var(--kose);
   font-family: var(--font);
   font-size: 1rem;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 input:focus, select:focus, textarea:focus {
@@ -310,25 +313,30 @@ input:focus, select:focus, textarea:focus {
   border-color: var(--renk-ana);
 }
 
-input:invalid, textarea:invalid {
-  border-color: var(--renk-hata);
-}
-
+/* Hatalı alan kontrolleri ve kırmızı kenarlıklar */
 input[aria-invalid="true"],
 select[aria-invalid="true"],
 textarea[aria-invalid="true"] {
-  border-color: var(--renk-hata);
+  border-color: var(--renk-hata) !important;
+  background-color: var(--renk-hata-zemin);
 }
 
 .hata-metni {
   color: var(--renk-hata);
   font-size: 0.85rem;
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
   display: block;
 }
 
+.aciklama-metni {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: var(--bosluk-s);
+}
+
+.buton-kaydet,
 button {
-  margin-top: var(--bosluk-l);
+  margin-top: var(--bosluk-m);
   padding: 0.7rem 1.5rem;
   background-color: var(--renk-ana);
   color: white;
@@ -340,36 +348,55 @@ button {
   align-self: flex-start;
 }
 
-button:hover {
+button:hover,
+.buton-kaydet:hover {
   opacity: 0.9;
 }
 
-#form-mesaj {
+/* Form Mesaj Alanı ve Yeşil JSON Kutusu */
+#form-mesaj,
+.form-mesaj-alani {
   margin-top: var(--bosluk-m);
-  max-width: 500px;
+  max-width: 600px;
 }
 
+.hata-genel-mesaj,
 .hata-mesaj {
   background-color: var(--renk-hata-zemin);
   border: 1px solid var(--renk-hata);
   color: var(--renk-hata);
   border-radius: var(--kose);
   padding: var(--bosluk-m);
-}
-
-.basari-mesaj {
   font-weight: bold;
-  color: var(--renk-basari);
-  margin: 0 0 0.5rem 0;
+  margin: 0;
 }
 
-#form-mesaj pre {
+.json-kutusu {
   background-color: var(--renk-basari-zemin);
   border: 1px solid var(--renk-basari);
   border-radius: var(--kose);
   padding: var(--bosluk-m);
+}
+
+.json-kutusu .basari-baslik,
+.basari-mesaj {
+  font-weight: bold;
+  color: var(--renk-basari);
+  margin: 0 0 var(--bosluk-s) 0;
+}
+
+.json-kutusu pre,
+#form-mesaj pre {
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  padding: 0;
   overflow-x: auto;
   font-size: 0.85rem;
+  color: #1a1a1a;
+  font-family: monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 /* Footer */

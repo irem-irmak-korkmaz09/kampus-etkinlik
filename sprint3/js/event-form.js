@@ -1,25 +1,30 @@
 import { events } from "./data.js";
 
 function toInputDate(dateStr) {
-  const [gun, ay, yil] = dateStr.split("-");
-  return `${yil}-${ay}-${gun}`;
+  if (!dateStr) return "";
+  const parts = dateStr.split("-");
+  if (parts.length === 3) {
+    const [gun, ay, yil] = parts;
+    return `${yil}-${ay.padStart(2, "0")}-${gun.padStart(2, "0")}`;
+  }
+  return dateStr;
 }
 
 const form = document.querySelector("#etkinlik-formu");
 const mesaj = document.querySelector("#form-mesaj");
 
-if (form.dataset.mode === "guncelle") {
+if (form && form.dataset.mode === "guncelle") {
   const id = new URLSearchParams(location.search).get("id");
   const etkinlik = events.find((e) => e.id === id);
 
   if (etkinlik) {
-    form.elements.ad.value = etkinlik.title;
-    form.elements.kategori.value = etkinlik.category;
+    form.elements.ad.value = etkinlik.title || "";
+    form.elements.kategori.value = etkinlik.category || "";
     form.elements.tarih.value = toInputDate(etkinlik.date);
-    form.elements.saat.value = etkinlik.time;
-    form.elements.yer.value = etkinlik.location;
+    form.elements.saat.value = etkinlik.time || "";
+    form.elements.yer.value = etkinlik.location || "";
     form.elements.kontenjan.value = etkinlik.capacity ?? "";
-    form.elements.aciklama.value = etkinlik.description;
+    form.elements.aciklama.value = etkinlik.description || "";
   } else {
     form.outerHTML = `
       <div class="hata-kutusu">
@@ -39,6 +44,7 @@ function clearErrors() {
     if (span) span.textContent = "";
     if (alan) alan.removeAttribute("aria-invalid");
   });
+  if (mesaj) mesaj.innerHTML = "";
 }
 
 function showError(name, message) {
@@ -50,18 +56,28 @@ function showError(name, message) {
 
 function validate(data) {
   const errors = {};
-  if (data.title.length < 3) errors.ad = "Etkinlik adı en az 3 karakter olmalı.";
-  if (!data.category) errors.kategori = "Bir kategori seçin.";
-  if (!data.date) errors.tarih = "Tarih seçin.";
-  if (!data.time) errors.saat = "Saat seçin.";
-  if (!data.location) errors.yer = "Yer bilgisini yazın.";
+  if (!data.title || data.title.length < 3) {
+    errors.ad = "Etkinlik adı en az 3 karakter olmalı.";
+  }
+  if (!data.category) {
+    errors.kategori = "Bu kategoriyi seçin.";
+  }
+  if (!data.date) {
+    errors.tarih = "Tarih seçin.";
+  }
+  if (!data.time) {
+    errors.saat = "Saat seçin.";
+  }
+  if (!data.location) {
+    errors.yer = "Yer bilgisini yazın.";
+  }
   if (data.capacity !== null && (data.capacity < 1 || data.capacity > 1000)) {
     errors.kontenjan = "Kontenjan 1 ile 1000 arasında olmalı.";
   }
   return errors;
 }
 
-if (form.isConnected) {
+if (form) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -81,7 +97,9 @@ if (form.isConnected) {
     Object.keys(errors).forEach((name) => showError(name, errors[name]));
 
     if (Object.keys(errors).length > 0) {
-      mesaj.innerHTML = `<p class="hata-mesaj">Formda hatalı alanlar var.</p>`;
+      if (mesaj) {
+        mesaj.innerHTML = `<p class="hata-genel-mesaj">Formda hatalı alanlar var.</p>`;
+      }
       return;
     }
 
@@ -90,9 +108,13 @@ if (form.isConnected) {
       ? new URLSearchParams(location.search).get("id")
       : `event-${events.length + 1}`;
 
-    mesaj.innerHTML = `
-      <p class="basari-mesaj">Etkinlik ${guncelleModu ? "güncellendi" : "oluşturuldu"} (bu sprintte kaydedilmez):</p>
-      <pre>${JSON.stringify(data, null, 2)}</pre>
-    `;
+    if (mesaj) {
+      mesaj.innerHTML = `
+        <div class="json-kutusu">
+          <p class="basari-baslik">Etkinlik ${guncelleModu ? "güncellendi" : "oluşturuldu"} (bu sprintte kaydedilmez):</p>
+          <pre>${JSON.stringify(data, null, 2)}</pre>
+        </div>
+      `;
+    }
   });
 }
