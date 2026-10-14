@@ -1,75 +1,37 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+kampus-etkinlik-ntawv0qp3-irem20.vercel.app
 
-Currently, two official plugins are available:
+# Kampüs Etkinlikleri — Sprint 4
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Bu proje, Kampüs Etkinlikleri platformunun Vite, React ve TypeScript mimarisine aktarılmış sürümüdür.
 
-## React Compiler
+## Dosya Açıklamaları
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **`package.json`**: Proje adı, komutlar (`dev`, `build`, `preview`) ve bağımlılık listesi.
+- **`package-lock.json`**: Yüklenen npm paketlerinin tam sürümleri.
+- **`node_modules/`**: İndirilen paketlerin bulunduğu klasör (GitHub'a gitmez).
+- **`tsconfig*.json`**: TypeScript yapılandırma ve tip denetim ayarları.
+- **`vite.config.ts`**: Vite ve React eklentisi ayarları.
+- **`index.html`**: Uygulamanın tek HTML dosyası (içinde `#root` div bulunur).
+- **`src/main.tsx`**: React'i başlatan ve `App` bileşenini root alanına çizen giriş dosyası.
+- **`src/App.tsx`**: 5 sayfanın görünümünü, sayfa geçişlerini ve arama/filtreleme durumlarını (state) yöneten ana bileşen.
+- **`src/App.css`**: Uygulamanın tüm stillerini ve renk düzenini içeren CSS dosyası.
+- **`src/index.css`**: Tüm sayfaya uygulanan genel sıfırlama stili.
+- **`src/types/campus-event.ts`**: Etkinlik ve kategori veri tiplerini tanımlayan dosya.
+- **`src/data/events.ts`**: 6 adet tipli etkinlik kaydını içeren veri dosyası.
+- **`src/utils/filter-events.ts`**: Arama, kategori filtreleme ve id ile etkinlik bulma saf fonksiyonları.
+- **`public/`**: Afiş görselleri ve statik dosyaların yer aldığı klasör.
 
-## Expanding the ESLint configuration
+## Kurulum ve Çalıştırma
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+bash
+# Bağımlılıkları yükle
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Geliştirme sunucusunu başlat
+npm run dev
+# Üretim derlemesi al
+npm run build 
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+## Geliştirici
+İrem Irmak Korkmaz · 2516501815
