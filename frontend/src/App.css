@@ -35,33 +35,55 @@ main, footer {
   padding: var(--bosluk-l) var(--bosluk-m);
 }
 
-/* Header: renkli şerit */
+/* Header: Sol hizada mor şerit */
 header {
   background-color: var(--renk-ana);
   color: white;
   padding: var(--bosluk-m);
+  text-align: left;
+}
+
+.header-icerik {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 header h1 {
-  max-width: 1000px;
-  margin: 0 auto var(--bosluk-s) auto;
+  margin: 0 0 var(--bosluk-s) 0;
   color: white;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  text-align: left;
 }
 
+.header-alt-metin {
+  margin: 0 0 var(--bosluk-m) 0;
+  opacity: 0.9;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+/* Navigasyon & Fotoğraftaki Beyaz Aktif Kutucuk */
 nav {
-  max-width: 1000px;
-  margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--bosluk-m);
+  align-items: center;
+  gap: var(--bosluk-s);
+  margin-top: var(--bosluk-s);
 }
 
 nav a {
   color: white;
   text-decoration: none;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Tıklandığında/Seçildiğinde fotoğraftaki gibi beyaz kutucuk olur */
+nav a.aktif {
+  background-color: white;
+  color: var(--renk-ana);
   font-weight: bold;
-  opacity: 0.9;
 }
 
 nav a:hover {
