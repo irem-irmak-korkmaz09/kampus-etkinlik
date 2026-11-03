@@ -1,7 +1,7 @@
 # Kampüs Etkinlikleri - Frontend (Sprint 6 / Vize Teslimi)
 
 ## 🔗 Canlı Uygulama (Vercel)
-* **Vercel Adresi:** [https://isimsoyisim-frontend.vercel.app](https://isimsoyisim-frontend.vercel.app) *(Kendi Vercel linkinizle değiştiriniz)*
+* **Vercel Adresi:https://iremirmakkorkmaz-frontend.vercel.app/
 
 ### 1.Route Haritası (10 Sayfa)
 / - Ana Sayfa
