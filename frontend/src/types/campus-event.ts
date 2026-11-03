@@ -1,4 +1,4 @@
-export type Category = "Seminer" | "Atölye" | "Söyleşi" | "Yarışma";
+export type Category = "Seminer" | "Atölye" | "Söyleşi" | "Yarışma" ;
 
 export interface CampusEvent {
   id: string;
@@ -11,3 +11,16 @@ export interface CampusEvent {
   description: string;
   image?: string;
 }
+
+export interface EventFormData {
+  title: string;
+  category: Category | "";
+  capacity: string;
+  date: string;
+  time: string;
+  location: string;
+  description: string;
+  image?: string;
+}
+
+export type EventFormErrors = Partial<Record<keyof EventFormData, string>>;

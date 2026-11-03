@@ -43,9 +43,11 @@ header {
   text-align: left;
 }
 
+/* 1. Header İçi Hizalama */
 .header-icerik {
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 0; /* Ortalamayı (0 auto) kaldırıp sola hizalıyoruz */
+  padding: 0;
 }
 
 header h1 {
@@ -101,12 +103,24 @@ h3 {
   margin-bottom: var(--bosluk-s);
 }
 
-/* Kart görünümü */
+/* 3. Kartlar Alanı (Kartların genişliği ve dizilimi) */
 .kart-alani {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 360px); /* Hocanın sitesindeki 2'li yan yana sabit genişlik */
   gap: var(--bosluk-m);
   margin-top: var(--bosluk-m);
+  justify-content: start; /* Kart grubunu tamamen sola yaslar */
+}
+
+@media (max-width: 768px) {
+  .kart-alani {
+    grid-template-columns: 1fr; /* Mobilde tek kolon */
+  }
+}
+
+/* 4. Buton ve Başlık Hizalamaları */
+h2, .buton {
+  text-align: left;
 }
 
 .kart {
@@ -428,4 +442,79 @@ footer {
   font-size: 0.9rem;
   padding-top: var(--bosluk-l);
   padding-bottom: var(--bosluk-l);
+}
+/* Tablo ve Yönetim Sayfası Stilleri */
+.tablo {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--bosluk-m);
+  background-color: white;
+  border-radius: var(--kose);
+  overflow: hidden;
+  box-shadow: var(--golge);
+}
+
+.tablo th {
+  background: var(--renk-ana);
+  color: #fff;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.tablo td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #eee;
+}
+
+.islemler {
+  display: flex;
+  gap: var(--bosluk-s);
+  align-items: center;
+}
+
+.islemler .buton {
+  margin-top: 0 !important;
+  margin-right: 0 !important;
+}
+
+.buton-sil {
+  background: var(--renk-hata);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--kose);
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 0;
+}
+
+.buton-sil:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 699px) {
+  .tablo thead {
+    display: none;
+  }
+  .tablo tr {
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: var(--kose);
+    margin-bottom: var(--bosluk-m);
+    padding: var(--bosluk-s);
+    background-color: white;
+  }
+  .tablo td {
+    display: block;
+    text-align: left;
+    border-bottom: none;
+  }
+  .tablo td.islemler {
+    display: flex;
+    margin-top: 0.5rem;
+  }
+  .tablo td[data-baslik]::before {
+    content: attr(data-baslik) ": ";
+    font-weight: 700;
+  }
 }

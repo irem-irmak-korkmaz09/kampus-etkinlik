@@ -57,6 +57,7 @@ export const events: CampusEvent[] = [
     image: "event-5.jpg"
   },
   
+  
   {
     id: "event-6",
     title: "Yapay Zeka Semineri",
@@ -67,5 +68,6 @@ export const events: CampusEvent[] = [
     description: "Yapay zekanın güncel kullanım alanlarına genel bakış.",
     capacity: 100,
     image: "event-6.jpg"
-  }
+  },
+
 ];
